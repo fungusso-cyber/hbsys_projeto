@@ -1,6 +1,6 @@
        IDENTIFICATION DIVISION.
-	   PROGRAM-ID. MENU.
-	   AUTHOR. GERSON GUSSO.
+       PROGRAM-ID. MENU.
+       AUTHOR. GERSON GUSSO.
        DATE-WRITTEN. DEZ-2019.
        ENVIRONMENT DIVISION.
        SPECIAL-NAMES.
@@ -27,9 +27,9 @@
        01  WS-MESSAGE                    PIC X(050) VALUE SPACES.    
              
        SCREEN SECTION.
-	   COPY "TELMENU.SCR".
+       COPY "TELMENU.SCR".
        LINKAGE SECTION.
-	   01  LK-RETORNO-INTEGRA        PIC X(030).
+       01  LK-RETORNO-INTEGRA        PIC X(030).
        PROCEDURE DIVISION USING LK-RETORNO-INTEGRA.
        1000-INICIO.
            
@@ -52,11 +52,11 @@
                         CALL "OCLIREL"   
 						
                    WHEN E-RELVEN
-				   
-				        CALL "OVENREL" 
-						
-				   WHEN E-INTEGRA
-				        PERFORM 
+		        CALL "OVENREL" 
+					
+	 	   WHEN E-INTEGRA
+      
+		        PERFORM 2000-INTEGRA-VENDEDOR
                         
 						
                END-EVALUATE
@@ -73,10 +73,10 @@
 		   ELSE
 		      STRING "ERRO ROT. INTEGRAÇÃO DE VENDEDORES "
 			          LK-RETORNO-INTEGRA
-                      DELIMITED BY SIZE
-                 INTO WS-MESSAGE
-			  END-STRING
-			  DISPLAY MESSAGE BOX WS-MESSAGE
+                     		 DELIMITED BY SIZE
+                 		INTO WS-MESSAGE
+		      END-STRING
+		      DISPLAY MESSAGE BOX WS-MESSAGE
 		   END-IF.
 	       
 		   
