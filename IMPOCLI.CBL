@@ -1,6 +1,6 @@
-	   IDENTIFICATION DIVISION.
-	   PROGRAM-ID. IMPOCLI.
-	   AUTHOR. GERSON GUSSO.
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. IMPOCLI.
+       AUTHOR. GERSON GUSSO.
        DATE-WRITTEN. DEZ-2019.
        ENVIRONMENT DIVISION.
        SPECIAL-NAMES.
@@ -33,16 +33,16 @@
 		   
 	    
        LINKAGE SECTION.
-	   01 LIN-LIGACAO.
-          05 LK-RETORNO		              PIC X(030).
+       01 LIN-LIGACAO.
+           05 LK-RETORNO		              PIC X(030).
        PROCEDURE DIVISION USING LIN-LIGACAO.
-	   1000-INICIO.
-	       PERFORM 1000-OPEN-ARQUIVO
+       1000-INICIO.
+                   PERFORM 1000-OPEN-ARQUIVO
 		   PERFORM 2000-PROCESSA
 		   PERFORM 3000-FINALIZA.
 		  
            
-	   1000-OPEN-ARQUIVO.
+      1000-OPEN-ARQUIVO.
 	       OPEN I-O CLIENTES
 	       IF  STAT-CLIENTES NOT EQUAL "00"
 	           STRING "ERRO AO ABRIR CLIENTES ! "
@@ -53,26 +53,26 @@
 	           GOBACK
            END-IF.
 		   
-		   OPEN INPUT CLISCV
-		   IF  STAT-CLICSV NOT EQUAL "00"
-	           STRING "ERRO AO ABRIR ARQUIVO CSV ! "
-                      STAT-CLICSV
-                 DELIMITED BY SIZE
-                 INTO LK-RETORNO
-               END-STRING
+	   OPEN INPUT CLISCV
+	   IF  STAT-CLICSV NOT EQUAL "00"
+ 	           STRING "ERRO AO ABRIR ARQUIVO CSV ! "
+                   	 STAT-CLICSV
+             	   	DELIMITED BY SIZE
+                	INTO LK-RETORNO
+                   END-STRING
 	           GOBACK
            END-IF.
 		   
-	   2000-PROCESSA.
+      2000-PROCESSA.
 	       
 	       READ  CLICSV
 		   IF STAT-CLICSV NOT EQUAL "00"
-			  STRING "ERRO NO PRIMEIRO READ ARQUIVO CSV ! "
-                   STAT-CLICSV
-                   DELIMITED BY SIZE
-                   INTO LK-RETORNO
-              END-STRING
-	          GOBACK
+		      STRING "ERRO NO PRIMEIRO READ ARQUIVO CSV ! "
+   	                STAT-CLICSV
+                 	  DELIMITED BY SIZE
+                   	INTO LK-RETORNO
+              	      END-STRING
+	              GOBACK
 		   END-IF	
 		   
            PERFORM UNTIL WS-EOF EQUAL WS-EOF = "F"
@@ -93,34 +93,34 @@
 			      END-IF		  
               END-IF
 			  
-			  READ  CLICSV AT END 
+		    READ  CLICSV AT END 
                     MOVE "F" TO WS-EOF	
            END-PERFORM.
 		   
-		   CLOSE CLICSV
-		   IF  STAT-CLICSV NOT EQUAL "00"
-	           STRING "ERRO AO FECHAR ARQUIVO CSV ! "
+	   CLOSE CLICSV
+	   IF  STAT-CLICSV NOT EQUAL "00"
+               STRING "ERRO AO FECHAR ARQUIVO CSV ! "
                       STAT-CLICSV
                  DELIMITED BY SIZE
                  INTO LK-RETORNO
                END-STRING
-	           GOBACK
+               GOBACK
            END-IF.
 		   
            CLOSE CLIENTES
-		   IF  STAT-CLIENTES NOT EQUAL "00"
-	           STRING "ERRO AO FECHAR CLIENTES ! "
+	   IF  STAT-CLIENTES NOT EQUAL "00"
+	       STRING "ERRO AO FECHAR CLIENTES ! "
                       STAT-CLIENTES
-                 DELIMITED BY SIZE
-                 INTO LK-RETORNO
+        	         DELIMITED BY SIZE
+                	 INTO LK-RETORNO
                END-STRING
-	           GOBACK
+	       GOBACK
            END-IF.
 		   
 		      
-	   2001-CARREGA-REGISTRO. 
+      2001-CARREGA-REGISTRO. 
 	   
-	       MOVE SPACES TO SEPARATE-CLI.
+           MOVE SPACES TO SEPARATE-CLI.
            UNSTRING RG-CLICSV DELIMITED BY ","
            INTO WS-CODIGO, WS-CNPJ, WS-RAZAO, WS-LATITUDE, WS-LONGITUDE.
             	       
@@ -135,43 +135,41 @@
 		   ELSE
 		       IF WS-RAZAO EQUAL SPACES
 			       MOVE "N"  TO WS-CAMPOS-OK
-			   ELSE  
-                   	IF WS-LATITUDE EQUAL ZEROS	
-					   MOVE "N"  TO WS-CAMPOS-OK
+		       ELSE  
+                           IF WS-LATITUDE EQUAL ZEROS	
+			      MOVE "N"  TO WS-CAMPOS-OK
                         
-                    ELSE					   
-		                IF WS-LONGITUDE EQUAL ZEROS	
-						   MOVE "N"  TO WS-CAMPOS-OK
-                            
-						END-IF
-					END-IF	
-               END-IF	   
-	       END-IF.
+                           ELSE					   
+		               IF WS-LONGITUDE EQUAL ZEROS	
+			          MOVE "N"  TO WS-CAMPOS-OK
+                               END-IF
+		           END-IF	
+                       END-IF	   
+	          END-IF.
 		   
-	   2003-MOVE-CAMPOS.
+      2003-MOVE-CAMPOS.
 	   
-	       MOVE WS-CODIGO            TO CLI-CODIGO       
-		   MOVE WS-CNPJ 			 TO	CLI-CNPJ      
-		   MOVE WS-RAZAO             TO CLI-RAZAO       
-		   MOVE WS-LATITUDE          TO CLI-LATITUDE       
-		   MOVE WS-LONGITUDE         TO CLI-LONGITUDE
-           MOVE SPACES               TO CLI-ON-VENDEDOR.		   
+          MOVE WS-CODIGO            TO CLI-CODIGO       
+          MOVE WS-CNPJ 	            TO	CLI-CNPJ      
+	  MOVE WS-RAZAO             TO CLI-RAZAO       
+	  MOVE WS-LATITUDE          TO CLI-LATITUDE       
+	  MOVE WS-LONGITUDE         TO CLI-LONGITUDE
+          MOVE SPACES               TO CLI-ON-VENDEDOR.		   
 	   
-	   2004-GRAVA-CLIENTE.
+      2004-GRAVA-CLIENTE.
 	   
            IF  WS-CAMPOS-OK EQUAL SPACES
-		       PERFORM 2003-MOVE-CAMPOS
-		       WRITE RG-CLIENTES
-			   IF  STAT-CLIENTES NOT EQUAL "00"
-	               STRING "ERRO AO GRAVAR CLIENTES ! "
+	       PERFORM 2003-MOVE-CAMPOS
+	       WRITE RG-CLIENTES
+               IF  STAT-CLIENTES NOT EQUAL "00"
+	           STRING "ERRO AO GRAVAR CLIENTES ! "
                           STAT-CLIENTES
                      DELIMITED BY SIZE
                      INTO LK-RETORNO
                    END-STRING
-	               GOBACK
-			   END-IF
+	           GOBACK
+	       END-IF
            END-IF.
-	   
-	   3000-FINALIZA.   
-       		MOVE SPACES                  TO LK-RETORNO.
-			GOBACK.
+      3000-FINALIZA.   
+          MOVE SPACES                  TO LK-RETORNO.
+	  GOBACK.
