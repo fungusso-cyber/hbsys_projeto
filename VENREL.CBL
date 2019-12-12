@@ -1,47 +1,47 @@
-	   IDENTIFICATION DIVISION.
-	   PROGRAM-ID. VENREL.
-	   AUTHOR. GERSON GUSSO.
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. VENREL.
+       AUTHOR. GERSON GUSSO.
        DATE-WRITTEN. DEZ-2019.
        ENVIRONMENT DIVISION.
        SPECIAL-NAMES.
 		   DECIMAL-POINT IS COMMA.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-	   COPY "VENDEDOR.SL".
-	   COPY "SAIDA.SL".
-	   COPY "WORK.SL".  
+       COPY "VENDEDOR.SL".
+       COPY "SAIDA.SL".
+       COPY "WORK.SL".  
         
 
-	   DATA DIVISION.
-	   FILE SECTION.
-	   COPY "VENDEDOR.FD".
-	   COPY "SAIDA.FD".
-	   COPY "WORK.FD". 
+       DATA DIVISION.
+       FILE SECTION.
+       COPY "VENDEDOR.FD".
+       COPY "SAIDA.FD".
+       COPY "WORK.FD". 
         
        WORKING-STORAGE SECTION.
        01  STAT-VENDEDOR                  PIC XX.
        01  STAT-SAIDA                     PIC XX.	   
-	   01  WS-CAMPOS-OK                   PIC X      VALUE SPACES.
-	   01  WS-EOF                         PIC X      VALUE SPACES.
-	   01  WS-EOF-SD                      PIC X      VALUE SPACES.
-	   01  CONTADOR                       PIC 9(005)  VALUE 0.
+       01  WS-CAMPOS-OK                   PIC X      VALUE SPACES.
+       01  WS-EOF                         PIC X      VALUE SPACES.
+       01  WS-EOF-SD                      PIC X      VALUE SPACES.
+       01  CONTADOR                       PIC 9(005)  VALUE 0.
        01  PAGINA                         PIC 9(004) VALUE 0.
        01  LINHAS                         PIC 9(002) VALUE 80. 
-	   01  TRACOS                         PIC X(080) VALUE ALL "=".
-	   01  CAB01.
-		   05 PIC X(068)                             VALUE   "RELATORIO DO CADASTRO DE VENDEDORES".
-		   05 PIC X(008) VALUE "PAGINA: ".
-		   05 CAB01-PAGINA PIC ZZZ9.
-	   01  CAB02.
-		   05 PIC X(007)                             VALUE " CODIGO".
-		   05 PIC X(003).
-		   05 PIC X(025)                             VALUE "CNPJ".
-		   05 PIC X(003).
-		   05 PIC X(020)                             VALUE "RAZAO SOCIAL".
+       01  TRACOS                         PIC X(080) VALUE ALL "=".
+       01  CAB01.
+	   05 PIC X(068)                             VALUE   "RELATORIO DO CADASTRO DE VENDEDORES".
+	   05 PIC X(008) VALUE "PAGINA: ".
+	   05 CAB01-PAGINA PIC ZZZ9.
+       01  CAB02.
+	   05 PIC X(007)                             VALUE " CODIGO".
+	   05 PIC X(003).
+	   05 PIC X(025)                             VALUE "CNPJ".
+	   05 PIC X(003).
+	   05 PIC X(020)                             VALUE "RAZAO SOCIAL".
            05 PIC X(003).
            05 PIC X(010)                             VALUE "LOGITUDE".
-		   05 PIC X(003).
-		   05 PIC X(010)                             VALUE "LATITUDE".
+	   05 PIC X(003).
+	   05 PIC X(010)                             VALUE "LATITUDE".
        01  LDT.
            05 PIC X(003).
            05 LDT-CODIGO                  PIC ZZZZZZ9.
@@ -51,26 +51,26 @@
            05 LDT-RAZAO                   PIC X(020).
            05 PIC X(003).
            05 LDT-LONGITUDE               PIC -ZZ9V99999999.
-		   05 PIC X(003).
+	   05 PIC X(003).
            05 LDT-LONGITUDE               PIC -ZZ9V99999999.
        01  RODAPE.
            05 PIC X(010).
            05 PIC X(030) VALUE "TOTAL DE REGISTROS IMPRESSOS: ".
            05 ROD-CONTADOR PIC ZZ.ZZ9. 
        LINKAGE SECTION.
-	   01 LIN-LIGACAO.
+       01 LIN-LIGACAO.
           05 LK-TIPO-ORD                 PIC X.       
           05 LK-CAMPO                    PIC X.       
           05 LK-CODIGO                   PIC 9(007).  
           05 LK-RAZAO                    PIC X(030).
           05 LK-RETORNO		             PIC X(030).
        PROCEDURE DIVISION USING LIN-LIGACAO.
-	   1000-INICIO.
+       1000-INICIO.
 	       PERFORM 1000-OPEN-ARQUIVO
 		   PERFORM 2000-PROCESSA
 		   PERFORM 3000-FINALIZA.
 		  
-	   1000-OPEN-ARQUIVO.
+       1000-OPEN-ARQUIVO.
 	       OPEN INPUT VENDEDOR
 	       IF  STAT-VENDEDOR NOT EQUAL "00"
 	           STRING "ERRO AO ABRIR VENDEDOR ! "
@@ -80,7 +80,7 @@
                END-STRING
 	           GOBACK
            END-IF.
-	   2000-PROCESSA.
+       2000-PROCESSA.
 	       IF  LK-CAMPO EQUAL "C"
 		       IF LK-TIPO-ORD EQUAL "A"
 		          SORT WORK ON ASCENDING CLI-CODIGO 
@@ -103,7 +103,7 @@
                END-IF			
                 
            END-IF.
-	   2000-SORTIN SECTION.
+       2000-SORTIN SECTION.
 	       
 	   	   MOVE ZEROS      TO CLI-CODIGO  
 		   START VENDEDOR KEY IS GREATER THAN CLI-CODIGO
@@ -152,9 +152,9 @@
 	           GOBACK
            END-IF.
 		   
-	   2000-SORTIN-EXIT. EXIT.
+       2000-SORTIN-EXIT. EXIT.
 	   
-	   2000-SORTOUT  SECTION. 
+       2000-SORTOUT  SECTION. 
 	       OPEN OUTPUT SAIDA
 		   IF  STAT-SAIDA NOT EQUAL "00"
 	           STRING "ERRO AO ABRIR ARQ. SAIDA ! "
@@ -165,7 +165,7 @@
 	           GOBACK
            END-IF. 
 		   
-		   RETURN  WORK AT END MOVE "F" TO WS-EOF-SD
+	   RETURN  WORK AT END MOVE "F" TO WS-EOF-SD
 		   
 	       PERFORM UNTIL WS-EOF-SD EQUAL "F"
 				
@@ -187,15 +187,15 @@
 		   
 		   MOVE SPACES                  TO LK-RETORNO.
 		   
-	   2001-GERA-RELATORIO.
+       2001-GERA-RELATORIO.
 	   
-	        MOVE SORT-CODIGO            TO LDT-CODIGO
-            MOVE SORT-CNPJ-CPF          TO LDT-CNPJ
-            MOVE SORT-RAZAO             TO LDT-RAZAO
-            MOVE SORT-LATITUDE          TO LDT-LATITUDE
-			MOVE SORT-LOGITUDE          TO LTD-LONGITUDE
-			IF LINHAS > 61
-               PERFORM 2002-CABECALHO
+           MOVE SORT-CODIGO            TO LDT-CODIGO
+           MOVE SORT-CNPJ-CPF          TO LDT-CNPJ
+           MOVE SORT-RAZAO             TO LDT-RAZAO
+           MOVE SORT-LATITUDE          TO LDT-LATITUDE
+           MOVE SORT-LOGITUDE          TO LTD-LONGITUDE
+	   IF LINHAS > 61
+              PERFORM 2002-CABECALHO
             END-IF
             ADD 1 TO LINHAS, CONTADOR
             WRITE RG-SAIDA FROM LDT AFTER 1.
@@ -223,7 +223,7 @@
            WRITE RG-SAIDA     FROM TRACOS AFTER 2.
            WRITE RG-SAIDA     FROM RODAPE AFTER 1. 
 	        
-	   2000-SORTOUT-EXIT. EXIT.
+       2000-SORTOUT-EXIT. EXIT.
 		   
        3000-FINALIZA.
 	   
