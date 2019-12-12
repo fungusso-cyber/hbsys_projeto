@@ -1,0 +1,16 @@
+	   01  TELA BLANK SCREEN.
+		   05 LINE 03 COLUMN 20 VALUE "FILTROS PARA RELATORIO DE VENDEDORES".
+           05 LABEL TITLE "Ordenação (A),(D): "          LINE 03 COL 06.
+           05 T-TIP-ORD ENTRY-FIELD                      PIC X COL 35.
+		   05 LABEL TITLE "(C)odigo Vendedor , (R)azao: " LINE 05 COL 06.
+		   05 T-CAMPO ENTRY-FIELD                        PIC X COL 35.
+		   05 LABEL TITLE "Codigo do Vendedor: "          LINE 07 COL 06.
+		   05 T-CODIGO ENTRY-FIELD                       PIC ZZZZZZ9 COL 35.
+		   05 LABEL TITLE "Razao Social: "               LINE 09 COL 06.
+		   05 T-RAZAO ENTRY-FIELD                        PIC X(30)   COL 35.
+		   05 B-LIMPAR PUSH-BUTTON TITLE "Limpa tela"    LINE 03 COL 65
+           EXCEPTION-VALUE 221.
+		   05 B-GRAVAR PUSH-BUTTON TITLE "Gerar"         LINE 05 COL 65
+	       EXCEPTION-VALUE 222.
+		   05 B-SAIR PUSH-BUTTON TITLE "Sair"            LINE 13 COL 65
+		   EXCEPTION-VALUE 27. 
