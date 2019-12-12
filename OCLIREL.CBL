@@ -1,6 +1,6 @@
        IDENTIFICATION DIVISION.
-	   PROGRAM-ID. OCLIREL.
-	   AUTHOR. GERSON GUSSO.
+       PROGRAM-ID. OCLIREL.
+       AUTHOR. GERSON GUSSO.
        DATE-WRITTEN. DEZ-2019.
        ENVIRONMENT DIVISION.
        SPECIAL-NAMES.
@@ -8,7 +8,7 @@
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
 	        
-	   DATA DIVISION.
+       DATA DIVISION.
        FILE SECTION.
 	   
        WORKING-STORAGE SECTION.
@@ -17,8 +17,8 @@
 	      88 ESCAPE-KEY                  VALUE 27.
 	      88 LIMPA-KEY 					 VALUE 221.
 		  88 GERA-KEY                    VALUE 222.
-	   01 WS-CAMPOS-OK                   PIC X      VALUE SPACES.  	    
-	   01 WS-LIGACAO.
+       01 WS-CAMPOS-OK                   PIC X      VALUE SPACES.  	    
+       01 WS-LIGACAO.
           05 WS-TIPO-ORD                 PIC X      VALUE SPACES.
           05 WS-CAMPO                    PIC X      VALUE SPACES. 
           05 WS-CODIGO                   PIC 9(007) VALUE ZEROS.
@@ -26,20 +26,20 @@
            
        SCREEN SECTION.
        COPY "TELCLIREL.SCR".
-	   LINKAGE SECTION.
-	   01 LK-RETORNO-IMP.
-	      05 LK-TIPO-ORD                 PIC X.       
+       LINKAGE SECTION.
+       01 LK-RETORNO-IMP.
+          05 LK-TIPO-ORD                 PIC X.       
           05 LK-CAMPO                    PIC X.       
           05 LK-CODIGO                   PIC 9(007). 
           05 LK-RAZAO                    PIC X(030). 		  
-	      05 LK-RETORNO                  PIC X(030).
+          05 LK-RETORNO                  PIC X(030).
 	   	   
        PROCEDURE DIVISION USING LK-REOTORNO-IMP.
        1000-INICIO.
 	                
            DISPLAY TELA.
 	    
-	   2000-PROCESSA.
+       2000-PROCESSA.
 	   
            PERFORM WITH TEST AFTER UNTIL ESCAPE-KEY
 				ACCEPT TELA ON EXCEPTION
@@ -47,11 +47,11 @@
 				END-ACCEPT
            END-PERFORM.
 		   
-	   3000-FINALIZA.
+       3000-FINALIZA.
 		   
-		   GOBACK.
+	   GOBACK.
 		   
-	   4000-CONTROLE-TELA.
+       4000-CONTROLE-TELA.
 	       
 		   EVALUATE TRUE
 				WHEN GERA-KEY
@@ -65,7 +65,7 @@
                   				  
 		   	END-EVALUATE.
 		   
-	   4001-VALIDA-CAMPOS.
+       4001-VALIDA-CAMPOS.
 	       
 		   MOVE SPACES           TO WS-CAMPOS-OK
 		   IF T-TIPO-ORD NOT EQUAL "A" AND "D"
@@ -99,7 +99,7 @@
                END-IF	   
 	       END-IF.
 		   
-	   4002-GERA-RELATORIO.
+       4002-GERA-RELATORIO.
 	       IF WS-CAMPOS-OK EQUAL SPACES
 		      MOVE T-TIPO-ORD              TO WS-TIPO-ORD
 			  MOVE T-CAMPO                 TO WS-CAMPO
@@ -117,7 +117,7 @@
 		      END-IF
 		   END-IF
 					 
-	   4006-LIMPA-TELA.
+       4006-LIMPA-TELA.
 		   
-		   DISPLAY TELA.
+	   DISPLAY TELA.
 		   
