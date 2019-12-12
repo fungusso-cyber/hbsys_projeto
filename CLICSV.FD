@@ -3,7 +3,7 @@
 	   01  RG-CLICSV.
 		   05 CLI-CODIGO                 PIC 9(007).
 		   05 FILLER                     PIC X(001).
-		   05 CLI-CNPJ 				     PIC 9(014).
+		   05 CLI-CNPJ 			 PIC 9(014).
 		   05 FILLER                     PIC X(001).
 		   05 CLI-RAZAO                  PIC X(040).
 		   05 FILLER                     PIC X(001).
