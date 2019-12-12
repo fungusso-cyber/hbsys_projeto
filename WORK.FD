@@ -1,11 +1,11 @@
-	   SD WORK
+       SD WORK
        DATA RECORD IS SORT-REC.
 
        01  SORT-REC
            05 SORT-CODIGO                 PIC 9(007).
-		   05 SORT-CNPJ-CPF				  PIC 9(014).
-		   05 SORT-RAZAO                  PIC X(040).
-		   05 SORT-LATITUDE               PIC S9(003)V9(008).
-		   05 SORT-LONGITUDE              PIC S9(003)V9(008).
-		   05 SORT-ON-VENDEDOR            PIC X(001).
+	   05 SORT-CNPJ-CPF				  PIC 9(014).
+	   05 SORT-RAZAO                  PIC X(040).
+	   05 SORT-LATITUDE               PIC S9(003)V9(008).
+	   05 SORT-LONGITUDE              PIC S9(003)V9(008).
+	   05 SORT-ON-VENDEDOR            PIC 9(003).
 		   
