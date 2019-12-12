@@ -1,16 +1,16 @@
        IDENTIFICATION DIVISION.
-	   PROGRAM-ID. CADVENDEDOR.
-	   AUTHOR. GERSON GUSSO.
+       PROGRAM-ID. CADVENDEDOR.
+       AUTHOR. GERSON GUSSO.
        DATE-WRITTEN. DEZ-2019.
        ENVIRONMENT DIVISION.
        SPECIAL-NAMES.
 		   DECIMAL-POINT IS COMMA.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-	   COPY "VENDEDOR.SL".
-	   DATA DIVISION.
+       COPY "VENDEDOR.SL".
+       DATA DIVISION.
        FILE SECTION.
-	   COPY "VENDEDOR.FD".
+       COPY "VENDEDOR.FD".
        WORKING-STORAGE SECTION.
         
        77  KEYSTATUS					  PIC 9(004) SPECIAL-NAMES CRT STATUS.
@@ -21,17 +21,17 @@
 		   88 DEL-KEY                     VALUE 224.
 		   88 IMP-KEY                     VALUE 225.
        01  STAT-VENDEDOR                  PIC XX. 
-	   01  WS-CAMPOS-OK                   PIC X     VALUE SPACES.
+       01  WS-CAMPOS-OK                   PIC X     VALUE SPACES.
 	   
-	   01  WS-AUXILIARES.
+       01  WS-AUXILIARES.
            05 WS-ROT-CPF                 PIC X(007) VALUE "XXRVCPF".
            05 WS-RC-CPF                  PIC X(001) VALUE ZEROS.  
        01  WS-MESSAGE                    PIC X(050) VALUE SPACES.   
        SCREEN SECTION.
        COPY "TELAVEN.SCR".
 	   
-	   LINKAGE SECTION.
-	   01  LK-IMPORTA-RETORNO           PIC X(030).
+       LINKAGE SECTION.
+       01  LK-IMPORTA-RETORNO           PIC X(030).
 	   
        PROCEDURE DIVISION.
        1000-INICIO.
@@ -46,7 +46,7 @@
            TITLE "Manutenção de VENDEDOR"
            DISPLAY TELA.
 	    
-	   2000-PROCESSA.
+       2000-PROCESSA.
 	   
            PERFORM WITH TEST AFTER UNTIL ESCAPE-KEY
 				ACCEPT TELA ON EXCEPTION
@@ -54,13 +54,13 @@
 				END-ACCEPT
            END-PERFORM.
 		   
-	   3000-FINALIZA.
+       3000-FINALIZA.
 		   CLOSE VENDEDOR.
 		   GOBACK.
 		   
-	   4000-CONTROLE-TELA.
+       4000-CONTROLE-TELA.
 	   
-		   EVALUATE TRUE
+	   EVALUATE TRUE
              WHEN WRITE-KEY
 			      
 			      PERFORM 4001-VALIDA-CLIENTE
@@ -102,22 +102,22 @@
                END-IF				  
 		   END-IF.
 		   
-	   4001-CARREGA-TELA. 
+       4001-CARREGA-TELA. 
 	               
 		   MOVE CLI-CNPJ 		  TO 	T-CNPJ	   
 		   MOVE CLI-RAZAO         TO    T-RAZAO      
 		   MOVE CLI-LATITUDE      TO    T-LATITUDE      
 		   MOVE CLI-LONGITUDE     TO    T-LONGITUDE.      
 		          
-	   4001-ON-BOTAO-UP-DEL.
+       4001-ON-BOTAO-UP-DEL.
 	   
-	   4001-OFF-BOTAO-INC.
+       4001-OFF-BOTAO-INC.
 	   
-	   4001-ON-BOTAO-INC.
+       4001-ON-BOTAO-INC.
 	   
-	   4001-OFF-BOTAO-UP-DEL.
+       4001-OFF-BOTAO-UP-DEL.
 	   
-	   4002-GRAVAR.
+       4002-GRAVAR.
 	       MOVE 'N'              TO CLI-ON-VENDEDOR 
 		   IF  WS-CAMPOS-OK EQUAL SPACES
 			   WRITE RG-VENDEDOR
@@ -135,7 +135,7 @@
 			      "INCLUSÃO NÃO EFETUADA  !"
 		   END-IF.
 		   
-	   4003-REGRAVAR.
+       4003-REGRAVAR.
 	       IF  WS-CAMPOS-OK EQUAL SPACES
 			   REWRITE RG-VENDEDOR
 		       IF STAT-VENDOR NOT "00"
@@ -152,7 +152,7 @@
 			      "ALTERAÇÃO NÃO EFETUADA  !"
 		   END-IF.
 		   
-	   4004-DELETAR.
+       4004-DELETAR.
 	   
 		   DELETE VENDEDOR
 		   IF STAT-VENDOR NOT "00"
@@ -165,7 +165,7 @@
 			  "EXCLUSÃO EFETUADA COM SUCESSO !"
 		   END-IF.
 		   
-	   4005-VALIDA-CAMPOS.   
+       4005-VALIDA-CAMPOS.   
 	       MOVE SPACES           TO WS-CAMPOS-OK
 		   CALL WS-ROT-CPF USING T-CPF
                                   WS-RC-CPF
@@ -199,12 +199,12 @@
 	       END-IF.
 	   
 	   
-	   4006-LIMPA-TELA.
+       4006-LIMPA-TELA.
 	   
 		   INITIALIZE RG-VENDEDOR
 		   DISPLAY TELA.
 		   
-	   4007-IMPORTA-DADOS.
+       4007-IMPORTA-DADOS.
 	   
 		   MOVE SPACES            TO LK-IMPORTA-RETORNO
 		   CALL "IMPOVEN" USING      LK-IMPORTA-RETORNO
