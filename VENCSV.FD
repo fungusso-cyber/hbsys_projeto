@@ -1,0 +1,15 @@
+	   FD  VENCSV
+		   LABEL RECORD STANDARD.
+	   01  RG-VENCSV.
+		   05 VEN-CODIGO                 PIC 9(007).
+		   05 FILLER                     PIC X(001).
+		   05 VEN-CPF 				     PIC 9(011).
+		   05 FILLER                     PIC X(001).
+		   05 VEN-NOME                   PIC X(040).
+		   05 FILLER                     PIC X(001).
+		   05 VEN-LATITUDE               PIC S9(003)V9(008).
+		   05 FILLER                     PIC X(001).
+		   05 VEN-LONGITUDE              PIC S9(003)V9(008).
+		   05 FILLER                     PIC X(001). 
+		   
+ 

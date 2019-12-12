@@ -1,0 +1,15 @@
+	   FD  CLICSV
+		   LABEL RECORD STANDARD.
+	   01  RG-CLICSV.
+		   05 CLI-CODIGO                 PIC 9(007).
+		   05 FILLER                     PIC X(001).
+		   05 CLI-CNPJ 				     PIC 9(014).
+		   05 FILLER                     PIC X(001).
+		   05 CLI-RAZAO                  PIC X(040).
+		   05 FILLER                     PIC X(001).
+		   05 CLI-LATITUDE               PIC S9(003)V9(008).
+		   05 FILLER                     PIC X(001).
+		   05 CLI-LONGITUDE              PIC S9(003)V9(008).
+		   05 FILLER                     PIC X(001). 
+		   
+ 

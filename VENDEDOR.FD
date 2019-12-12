@@ -1,0 +1,10 @@
+	   FD  VENDEDOR
+		   LABEL RECORD STANDARD.
+	   01  RG-VENDEDOR.
+		   05 VEN-CODIGO                 PIC 9(003).
+		   05 VEN-CPF 				     PIC 9(011).
+		   05 VEN-NOME                   PIC X(040).
+		   05 VEN-LATITUDE               PIC S9(003)V9(008).
+		   05 VEN-LONGITUDE              PIC S9(003)V9(008).
+		   
+ 

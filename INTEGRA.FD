@@ -1,0 +1,4 @@
+	   FD  INTEGRA
+		   LABEL RECORD STANDARD.
+	   01  RG-INTEGRA                   PIC X(132).
+		    

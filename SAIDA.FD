@@ -1,0 +1,4 @@
+	   FD  SAIDA
+		   LABEL RECORD STANDARD.
+	   01  RG-SAIDA                      PIC X(132).
+		   
